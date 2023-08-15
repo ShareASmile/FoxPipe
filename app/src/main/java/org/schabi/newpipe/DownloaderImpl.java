@@ -2,10 +2,10 @@ package org.schabi.newpipe;
 
 import android.content.Context;
 import android.os.Build;
-import android.preference.PreferenceManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.extractor.downloader.Downloader;
 import org.schabi.newpipe.extractor.downloader.Request;
@@ -43,7 +43,7 @@ import static org.schabi.newpipe.MainActivity.DEBUG;
 
 public final class DownloaderImpl extends Downloader {
     public static final String USER_AGENT
-            = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101 Firefox/68.0";
+            = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:91.0) Gecko/20100101 Firefox/91.0";
     public static final String YOUTUBE_RESTRICTED_MODE_COOKIE_KEY
             = "youtube_restricted_mode_key";
     public static final String YOUTUBE_RESTRICTED_MODE_COOKIE = "PREF=f2=8000000";

@@ -3,7 +3,6 @@ package org.schabi.newpipe.fragments.list.videos;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,6 +12,7 @@ import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.ListExtractor;
@@ -21,6 +21,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.AnimationUtils;
+import org.schabi.newpipe.util.CompatibilityUtil;
 import org.schabi.newpipe.util.RelatedStreamInfo;
 
 import java.io.Serializable;
@@ -78,11 +79,11 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
             autoplaySwitch = headerRootLayout.findViewById(R.id.autoplay_switch);
 
             final SharedPreferences pref = PreferenceManager
-                    .getDefaultSharedPreferences(getContext());
+                    .getDefaultSharedPreferences(requireContext());
             final boolean autoplay = pref.getBoolean(getString(R.string.auto_queue_key), false);
             autoplaySwitch.setChecked(autoplay);
             autoplaySwitch.setOnCheckedChangeListener((compoundButton, b) ->
-                    PreferenceManager.getDefaultSharedPreferences(getContext()).edit()
+                    PreferenceManager.getDefaultSharedPreferences(requireContext()).edit()
                             .putBoolean(getString(R.string.auto_queue_key), b).apply());
             return headerRootLayout;
         } else {
@@ -123,7 +124,7 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(), UserAction.REQUESTED_STREAM,
-                    NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);
+                    CompatibilityUtil.getNameOfService(result.getServiceId()), result.getUrl(), 0);
         }
 
         if (disposables != null) {
@@ -138,7 +139,7 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(),
                     UserAction.REQUESTED_STREAM,
-                    NewPipe.getNameOfService(serviceId),
+                    CompatibilityUtil.getNameOfService(serviceId),
                     "Get next page of: " + url,
                     R.string.general_error);
         }
@@ -156,7 +157,7 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
 
         hideLoading();
         showSnackBarError(exception, UserAction.REQUESTED_STREAM,
-                NewPipe.getNameOfService(serviceId), url, R.string.general_error);
+                CompatibilityUtil.getNameOfService(serviceId), url, R.string.general_error);
         return true;
     }
 
@@ -201,7 +202,7 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
     @Override
     public void onSharedPreferenceChanged(final SharedPreferences sharedPreferences,
                                           final String s) {
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(requireContext());
         boolean autoplay = pref.getBoolean(getString(R.string.auto_queue_key), false);
         if (autoplaySwitch != null) {
             autoplaySwitch.setChecked(autoplay);

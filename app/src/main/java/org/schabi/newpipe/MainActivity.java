@@ -27,7 +27,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -46,10 +45,12 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.preference.PreferenceManager;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -99,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int ITEM_ID_BOOKMARKS = -3;
     private static final int ITEM_ID_DOWNLOADS = -4;
     private static final int ITEM_ID_HISTORY = -5;
+    private static final int ITEM_ID_BG_PLAYER = -6;
     private static final int ITEM_ID_SETTINGS = 0;
     private static final int ITEM_ID_ABOUT = 1;
 
@@ -115,10 +117,11 @@ public class MainActivity extends AppCompatActivity {
                     + "savedInstanceState = [" + savedInstanceState + "]");
         }
 
-        // enable TLS1.1/1.2 for kitkat devices, to fix download and play for mediaCCC sources
+        // enable TLS1.1/1.2 for kitkat devices, to fix download and play for media.ccc.de sources
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
             TLSSocketFactoryCompat.setAsDefault();
         }
+
         ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
 
         assureCorrectAppLanguage(this);
@@ -163,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
 
         drawerItems.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_SUBSCRIPTIONS, ORDER,
-                        R.string.tab_subscriptions)
+				        R.string.tab_subscriptions)
                 .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_channel));
         drawerItems.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_FEED, ORDER, R.string.fragment_feed_title)
@@ -177,6 +180,9 @@ public class MainActivity extends AppCompatActivity {
         drawerItems.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_HISTORY, ORDER, R.string.action_history)
                 .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_history));
+        drawerItems.getMenu()
+                .add(R.id.menu_tabs_group, ITEM_ID_BG_PLAYER, ORDER, R.string.background_player)
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_play_arrow));
 
         //Settings and About
         drawerItems.getMenu()
@@ -204,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
                     toggleServices();
                 }
                 if (lastService != ServiceHelper.getSelectedServiceId(MainActivity.this)) {
-                    new Handler(Looper.getMainLooper()).post(MainActivity.this::recreate);
+                    ActivityCompat.recreate(MainActivity.this);
                 }
             }
         });
@@ -260,6 +266,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case ITEM_ID_HISTORY:
                 NavigationHelper.openStatisticFragment(getSupportFragmentManager());
+                break;
+            case ITEM_ID_BG_PLAYER:
+                NavigationHelper.openBackgroundPlayer(this);
                 break;
             default:
                 int currentServiceId = ServiceHelper.getSelectedServiceId(this);
@@ -479,10 +488,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "Theme has changed, recreating activity...");
             }
             sharedPreferences.edit().putBoolean(Constants.KEY_THEME_CHANGE, false).apply();
-            // https://stackoverflow.com/questions/10844112/
-            // Briefly, let the activity resume
-            // properly posting the recreate call to end of the message queue
-            new Handler(Looper.getMainLooper()).post(MainActivity.this::recreate);
+            ActivityCompat.recreate(this);
         }
 
         if (sharedPreferences.getBoolean(Constants.KEY_MAIN_PAGE_CHANGE, false)) {

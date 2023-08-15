@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -204,7 +204,7 @@ public class PeertubeInstanceListFragment extends Fragment {
                 .setNegativeButton(R.string.cancel, null)
                 .setPositiveButton(R.string.yes, (dialog, which) -> {
                     sharedPreferences.edit().remove(savedInstanceListKey).apply();
-                    selectInstance(PeertubeInstance.defaultInstance);
+                    selectInstance(PeertubeInstance.DEFAULT_INSTANCE);
                     updateInstanceList();
                     instanceListAdapter.notifyDataSetChanged();
                 })

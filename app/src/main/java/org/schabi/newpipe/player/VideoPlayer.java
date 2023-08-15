@@ -32,7 +32,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Handler;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -98,8 +98,8 @@ public abstract class VideoPlayer extends BasePlayer
     //////////////////////////////////////////////////////////////////////////*/
 
     public static final int DEFAULT_CONTROLS_DURATION = 300; // 300 millis
-    public static final int DEFAULT_CONTROLS_HIDE_TIME = 2000;  // 2 Seconds
-    public static final int DPAD_CONTROLS_HIDE_TIME = 7000;  // 7 Seconds
+    public static final int DEFAULT_CONTROLS_HIDE_TIME = 2000; // 2 seconds
+    public static final int DPAD_CONTROLS_HIDE_TIME = 5000; // 5 seconds
 
     protected static final int RENDERER_UNAVAILABLE = -1;
 
@@ -252,7 +252,7 @@ public abstract class VideoPlayer extends BasePlayer
         simpleExoPlayer.addTextOutput(cues -> subtitleView.onCues(cues));
 
         // Setup audio session with onboard equalizer
-        if (Build.VERSION.SDK_INT >= 21) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             trackSelector.setParameters(trackSelector.buildUponParameters()
                     .setTunnelingAudioSessionId(C.generateAudioSessionIdV21(context)));
         }
