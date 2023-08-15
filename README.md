@@ -1,6 +1,6 @@
 # FoxPipe
 
-A NewPipe fork with the old UI having separate Players handling 3 seperate Queues simultaneously
+A NewPipe fork with the old UI having separate Players handling 3 seperate Queues
 <p align="center"><a href="https://github.com/ShareASmile/FoxPipe"><img src="assets/new_pipe_icon_5.png" width="150"></a></p> 
 <h2 align="center"><b>FoxPipe</b></h2>
 <h4 align="center">A libre lightweight streaming frontend for Android.</h4>
