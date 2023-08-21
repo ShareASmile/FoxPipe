@@ -33,7 +33,7 @@ A NewPipe fork with the old UI having separate Players handling 3 seperate Queue
 
 
 ## Description
-This repository contains old preunified version 0.19.8 of [NewPipe](https://github.com/TeamNewPipe/NewPipe/releases/tag/v0.19.8) with up-to-date [NewPipeExtractor](https://github.com/ShareASmile/NewPipeExtractor/tree/ify) dependency.
+This repository contains old preunified version 0.19.8 of [NewPipe](https://github.com/TeamNewPipe/NewPipe/releases/tag/v0.19.8) with legacy version of [NewPipeExtractor](https://github.com/ShareASmile/NewPipeExtractor) dependency.
 
 The application itself heavily relies on the extractor component which is responsible for proper parsing of various video/audio streams, including Youtube site. The old NewPipe version 0.19.8 depends on old extractor version which is practically deprecated and can't handle current Youtube (and similar?) streams,thus rendering the application useless for daily use.
 FoxPipe in this repository uses the updated version of NewPipeExtractor for legacy devices and resolves the forementioned issue, thus making it possible to use old NewPipe version 0.19.8 based FoxPipe with some bug fixes & features added along with updated extractor version. You don't need a YouTube account to use NewPipe, it is a copylefted libre software.
