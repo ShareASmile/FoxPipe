@@ -1,0 +1,7 @@
+New
+• Add ability to Share Stream Link (alpha)
+
+Fixed
+• Fix extraction of YouTube likes count
+• Update github url in app about section to Foxpipe preunified fork
+• Fix comments linkify problem
