@@ -7,9 +7,9 @@ import android.view.View;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipelegacy.util.ImageDisplayConstants;
 import org.schabi.newpipelegacy.util.Localization;
+import org.schabi.newpipelegacy.util.ServiceHelper;
 
 public class PlayQueueItemBuilder {
     private static final String TAG = PlayQueueItemBuilder.class.toString();
@@ -27,7 +27,7 @@ public class PlayQueueItemBuilder {
             holder.itemVideoTitleView.setText(item.getTitle());
         }
         holder.itemAdditionalDetailsView.setText(Localization.concatenateStrings(item.getUploader(),
-                NewPipe.getNameOfService(item.getServiceId())));
+                ServiceHelper.getNameOfServiceById(item.getServiceId())));
 
         if (item.getDuration() > 0) {
             holder.itemDurationView.setText(Localization.getDurationString(item.getDuration()));

@@ -6,6 +6,8 @@ import android.preference.PreferenceManager;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.StringRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.grack.nanojson.JsonObject;
 import com.grack.nanojson.JsonParser;
@@ -38,6 +40,8 @@ public final class ServiceHelper {
                 return R.drawable.place_holder_gadse;
             case 3:
                 return R.drawable.place_holder_peertube;
+            case 4:
+                return R.drawable.place_holder_bandcamp;
             default:
                 return R.drawable.place_holder_circle;
         }
@@ -48,6 +52,7 @@ public final class ServiceHelper {
             case "all":
                 return c.getString(R.string.all);
             case "videos":
+			case "sepia_videos":
             case "music_videos":
                 return c.getString(R.string.videos_string);
             case "channels":
@@ -124,6 +129,29 @@ public final class ServiceHelper {
         return serviceId;
     }
 
+    @Nullable
+    public static StreamingService getSelectedService(final Context context) {
+        final String serviceName = PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(context.getString(R.string.current_service_key),
+                        context.getString(R.string.default_service_value));
+
+        try {
+            return NewPipe.getService(serviceName);
+        } catch (final ExtractionException e) {
+            return null;
+        }
+    }
+
+    @NonNull
+    public static String getNameOfServiceById(final int serviceId) {
+        return ServiceList.all().stream()
+                .filter(s -> s.getServiceId() == serviceId)
+                .findFirst()
+                .map(StreamingService::getServiceInfo)
+                .map(StreamingService.ServiceInfo::getName)
+                .orElse("<unknown>");
+    }
+
     public static void setSelectedServiceId(final Context context, final int serviceId) {
         String serviceName;
         try {
@@ -135,8 +163,10 @@ public final class ServiceHelper {
         setSelectedServicePreferences(context, serviceName);
     }
 
-    public static void setSelectedServiceId(final Context context, final String serviceName) {
-        int serviceId = NewPipe.getIdOfService(serviceName);
+    public static void setSelectedServiceId(
+            final Context context, final String serviceName)
+            throws ExtractionException {
+        int serviceId = NewPipe.getService(serviceName).getServiceId();
         if (serviceId == -1) {
             setSelectedServicePreferences(context,
                     DEFAULT_FALLBACK_SERVICE.getServiceInfo().getName());

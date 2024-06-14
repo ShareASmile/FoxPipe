@@ -29,6 +29,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
+import org.schabi.newpipelegacy.App;
 import org.schabi.newpipelegacy.R;
 import org.schabi.newpipelegacy.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -66,7 +67,7 @@ public class SubscriptionsImportService extends BaseImportExportService {
      * A {@link LocalBroadcastManager local broadcast} will be made with this action
      * when the import is successfully completed.
      */
-    public static final String IMPORT_COMPLETE_ACTION = "org.schabi.newpipelegacy.local"
+    public static final String IMPORT_COMPLETE_ACTION = App.PACKAGE_NAME + ".local"
             + ".subscription.services.SubscriptionsImportService.IMPORT_COMPLETE";
 
     /**

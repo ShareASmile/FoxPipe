@@ -46,10 +46,10 @@ public class License implements Parcelable {
 
     public Uri getContentUri() {
         return new Uri.Builder()
-                .scheme("file")
-                .path("/android_asset")
-                .appendPath(filename)
-                .build();
+            .scheme("file")
+            .path("/android_asset")
+            .appendPath(filename)
+            .build();
     }
 
     public String getAbbreviation() {

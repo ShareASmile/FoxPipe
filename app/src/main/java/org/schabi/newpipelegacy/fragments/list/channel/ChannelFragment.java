@@ -30,7 +30,6 @@ import org.schabi.newpipelegacy.R;
 import org.schabi.newpipelegacy.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
-import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
@@ -46,6 +45,7 @@ import org.schabi.newpipelegacy.util.ExtractorHelper;
 import org.schabi.newpipelegacy.util.ImageDisplayConstants;
 import org.schabi.newpipelegacy.util.Localization;
 import org.schabi.newpipelegacy.util.NavigationHelper;
+import org.schabi.newpipelegacy.util.ServiceHelper;
 import org.schabi.newpipelegacy.util.ShareUtils;
 import org.schabi.newpipelegacy.util.ThemeHelper;
 
@@ -244,7 +244,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
         final Consumer<Throwable> onError = (Throwable throwable) -> {
             animateView(headerSubscribeButton, false, 100);
             showSnackBarError(throwable, UserAction.SUBSCRIPTION,
-                    NewPipe.getNameOfService(currentInfo.getServiceId()),
+                    ServiceHelper.getNameOfServiceById(currentInfo.getServiceId()),
                     "Get subscription status", 0);
         };
 
@@ -297,7 +297,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
         final Consumer<Throwable> onError = (@NonNull Throwable throwable) ->
                 onUnrecoverableError(throwable,
                         UserAction.SUBSCRIPTION,
-                        NewPipe.getNameOfService(info.getServiceId()),
+                        ServiceHelper.getNameOfServiceById(info.getServiceId()),
                         "Updating Subscription for " + info.getUrl(),
                         R.string.subscription_update_failed);
 
@@ -318,7 +318,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
         final Consumer<Throwable> onError = (@NonNull Throwable throwable) ->
                 onUnrecoverableError(throwable,
                         UserAction.SUBSCRIPTION,
-                        NewPipe.getNameOfService(currentInfo.getServiceId()),
+                        ServiceHelper.getNameOfServiceById(currentInfo.getServiceId()),
                         "Subscription Change",
                         R.string.subscription_change_failed);
 
@@ -426,8 +426,8 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
             case R.id.sub_channel_title_view:
                 if (!TextUtils.isEmpty(currentInfo.getParentChannelUrl())) {
                     try {
-                        NavigationHelper.openChannelFragment(getFragmentManager(),
-                                currentInfo.getServiceId(), currentInfo.getParentChannelUrl(),
+                        NavigationHelper.openChannelFragment(getFM(), currentInfo.getServiceId(),
+						currentInfo.getParentChannelUrl(),
                                 currentInfo.getParentChannelName());
                     } catch (Exception e) {
                         ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
@@ -505,7 +505,9 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
 
             if (!errors.isEmpty()) {
                 showSnackBarError(errors, UserAction.REQUESTED_CHANNEL,
-                        NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);
+                        ServiceHelper.getNameOfServiceById(result.getServiceId()),
+                        result.getUrl(), 0
+                );
             }
         }
 
@@ -565,7 +567,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(),
                     UserAction.REQUESTED_CHANNEL,
-                    NewPipe.getNameOfService(serviceId),
+                    ServiceHelper.getNameOfServiceById(serviceId),
                     "Get next page of: " + url,
                     R.string.general_error);
         }
@@ -585,7 +587,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo>
                 ? R.string.parsing_error : R.string.general_error;
 
         onUnrecoverableError(exception, UserAction.REQUESTED_CHANNEL,
-                NewPipe.getNameOfService(serviceId), url, errorId);
+                ServiceHelper.getNameOfServiceById(serviceId), url, errorId);
 
         return true;
     }

@@ -85,7 +85,7 @@ public class SubscriptionsImportFragment extends BaseFragment {
         if (supportedSources.isEmpty() && currentServiceId != Constants.NO_SERVICE_ID) {
             ErrorActivity.reportError(activity, Collections.emptyList(), null, null,
                     ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE,
-                            NewPipe.getNameOfService(currentServiceId),
+                            ServiceHelper.getNameOfServiceById(currentServiceId),
                             "Service don't support importing", R.string.general_error));
             activity.finish();
         }

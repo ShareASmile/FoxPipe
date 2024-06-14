@@ -14,6 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import org.schabi.newpipelegacy.R;
 import org.schabi.newpipelegacy.util.AndroidTvUtils;
+import org.schabi.newpipelegacy.util.NavigationHelper;
 import org.schabi.newpipelegacy.util.ThemeHelper;
 import org.schabi.newpipelegacy.views.FocusOverlayView;
 
@@ -86,6 +87,9 @@ public class DownloadActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
+                return true;
+            case R.id.action_settings:
+                NavigationHelper.openSettings(this);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

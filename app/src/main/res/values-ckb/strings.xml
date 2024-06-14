@@ -557,7 +557,7 @@
     <string name="install">دامەزراندن</string>
     <string name="info_dir_created">شوێنی داگرتن دانرا \'%1$s\'</string>
     <string name="videos_string">ڤیدیۆکان</string>
-    <string name="url_not_supported_toast">بەستەرەکە پشتگیری نەکراوە</string>
+    <string name="unsupported_url">بەستەرەکە پشتگیری نەکراوە</string>
     <string name="playback_pitch">شەپۆلی دەنگ</string>
     <string name="minimize_on_exit_summary">کرداری کاتی گۆڕین بۆ داوانامەیەکی تر لە کارپێکەری ڤیدیۆییەوە — %s</string>
     <string name="msg_copied">لەبەرگیرایەوە</string>

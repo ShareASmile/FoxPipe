@@ -48,6 +48,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -86,6 +87,7 @@ import org.schabi.newpipelegacy.util.KoreUtil;
 import org.schabi.newpipelegacy.util.ListHelper;
 import org.schabi.newpipelegacy.util.NavigationHelper;
 import org.schabi.newpipelegacy.util.PermissionHelper;
+import org.schabi.newpipelegacy.util.ServiceHelper;
 import org.schabi.newpipelegacy.util.ShareUtils;
 import org.schabi.newpipelegacy.util.StateSaver;
 import org.schabi.newpipelegacy.util.ThemeHelper;
@@ -517,6 +519,7 @@ public final class MainVideoPlayer extends AppCompatActivity
     private class VideoPlayerImpl extends VideoPlayer {
         private static final float MAX_GESTURE_LENGTH = 0.75f;
 
+        private LinearLayout metadata;
         private TextView titleTextView;
         private TextView channelTextView;
         private RelativeLayout volumeRelativeLayout;
@@ -561,6 +564,7 @@ public final class MainVideoPlayer extends AppCompatActivity
         @Override
         public void initViews(final View view) {
             super.initViews(view);
+			this.metadata = view.findViewById(R.id.metadataView);
             this.titleTextView = view.findViewById(R.id.titleTextView);
             this.channelTextView = view.findViewById(R.id.channelTextView);
             this.volumeRelativeLayout = view.findViewById(R.id.volumeRelativeLayout);
@@ -619,6 +623,7 @@ public final class MainVideoPlayer extends AppCompatActivity
             gestureDetector.setIsLongpressEnabled(false);
             getRootView().setOnTouchListener(listener);
 
+            metadata.setOnClickListener(this);
             queueButton.setOnClickListener(this);
             repeatButton.setOnClickListener(this);
             shuffleButton.setOnClickListener(this);
@@ -700,6 +705,12 @@ public final class MainVideoPlayer extends AppCompatActivity
         public void onShuffleClicked() {
             super.onShuffleClicked();
             updatePlaybackButtons();
+        }
+
+        @Override
+        public void onPlay() {
+            super.onPlay();
+            showControlsThenHide();
         }
 
         /*//////////////////////////////////////////////////////////////////////////
@@ -814,6 +825,15 @@ public final class MainVideoPlayer extends AppCompatActivity
             setMuteButton(muteButton, playerImpl.isMuted());
         }
 
+        public void onMetadataClicked() {
+            NavigationHelper.openVideoDetail(context,
+                    ServiceHelper.getSelectedServiceId(context),
+                    playerImpl.getVideoUrl(), playerImpl.getVideoTitle());
+
+            ((View) getControlAnimationView().getParent()).setVisibility(View.GONE);
+            destroy();
+            finish();
+        }
 
         @Override
         public void onClick(final View v) {
@@ -850,6 +870,8 @@ public final class MainVideoPlayer extends AppCompatActivity
                 return;
             } else if (v.getId() == kodiButton.getId()) {
                 onKodiShare();
+            } else if (v.getId() == metadata.getId()) {
+                onMetadataClicked();
             }
 
             if (getCurrentState() != STATE_COMPLETED) {

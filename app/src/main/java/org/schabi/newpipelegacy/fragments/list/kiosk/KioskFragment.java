@@ -24,6 +24,7 @@ import org.schabi.newpipelegacy.report.UserAction;
 import org.schabi.newpipelegacy.util.ExtractorHelper;
 import org.schabi.newpipelegacy.util.KioskTranslator;
 import org.schabi.newpipelegacy.util.Localization;
+import org.schabi.newpipelegacy.util.ServiceHelper;
 
 import icepick.State;
 import io.reactivex.Single;
@@ -173,7 +174,7 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(),
                     UserAction.REQUESTED_KIOSK,
-                    NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);
+                    ServiceHelper.getNameOfServiceById(result.getServiceId()), result.getUrl(), 0);
         }
     }
 
@@ -183,7 +184,7 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(),
-                    UserAction.REQUESTED_PLAYLIST, NewPipe.getNameOfService(serviceId),
+                    UserAction.REQUESTED_PLAYLIST, ServiceHelper.getNameOfServiceById(serviceId),
                     "Get next page of: " + url, 0);
         }
     }

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.text.util.LinkifyCompat;
 
 import org.schabi.newpipelegacy.R;
 import org.schabi.newpipe.extractor.InfoItem;
@@ -22,6 +23,7 @@ import org.schabi.newpipelegacy.util.Localization;
 import org.schabi.newpipelegacy.util.NavigationHelper;
 import org.schabi.newpipelegacy.util.ShareUtils;
 
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -95,7 +97,14 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         streamUrl = item.getUrl();
 
         itemContentView.setLines(COMMENT_DEFAULT_LINES);
-        commentText = item.getCommentText();
+        try {
+            commentText = item.getCommentText().getContent().replace("&nbsp;", "")
+                    .replace("<a href=", "").replace("</a>", " ")
+                    .replace("<br>", " ").replace("<b>", " ")
+                    .replace("</br>", " ").replace("</b>", " ");
+        } catch (Exception e) {
+            commentText = " ";
+        }
         itemContentView.setText(commentText);
         itemContentView.setOnTouchListener(CommentTextOnTouchListener.INSTANCE);
 

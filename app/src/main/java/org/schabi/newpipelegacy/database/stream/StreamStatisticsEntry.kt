@@ -2,15 +2,19 @@ package org.schabi.newpipelegacy.database.stream
 
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
-import java.util.Date
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipelegacy.database.LocalItem
 import org.schabi.newpipelegacy.database.history.model.StreamHistoryEntity
 import org.schabi.newpipelegacy.database.stream.model.StreamEntity
+import org.schabi.newpipelegacy.database.stream.model.StreamStateEntity.STREAM_PROGRESS_TIME
+import java.util.Date
 
 class StreamStatisticsEntry(
     @Embedded
     val streamEntity: StreamEntity,
+
+    @ColumnInfo(name = STREAM_PROGRESS_TIME, defaultValue = "0")
+    val progressTime: Long,
 
     @ColumnInfo(name = StreamHistoryEntity.JOIN_STREAM_ID)
     val streamId: Long,
