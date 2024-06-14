@@ -8,7 +8,7 @@ A NewPipe fork with the old UI having separate Players handling 3 seperate Queue
 <p align="center">
 <a href="https://github.com/ShareASmile/FoxPipe/releases" alt="GitHub release"><img src="https://img.shields.io/github/release/ShareASmile/FoxPipe.svg" ></a>
 <a href="https://www.gnu.org/licenses/gpl-3.0" alt="License: GPLv3"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
-<a href="https://github.com/ShareASmile/FoxPipe/actions" alt="Build Status"><img src="https://github.com/ShareASmile/FoxPipe/workflows/CI/badge.svg?branch=master&event=push"></a>
+<a href="https://github.com/ShareASmile/FoxPipe/actions/workflows/ci.yml" alt="Build Status"><img src="https://github.com/ShareASmile/FoxPipe/actions/workflows/ci.yml/badge.svg"></a>
 </p>
 <hr>
 <p align="center"><a href="#screenshots">Screenshots</a> &bull; <a href="#description">Description</a> &bull; <a href="#features">Features</a> &bull; <a href="#installation-and-updates">Installation and updates</a> &bull; <a href="#contribution">Contribution</a> &bull; <a href="#license">License</a></p>
