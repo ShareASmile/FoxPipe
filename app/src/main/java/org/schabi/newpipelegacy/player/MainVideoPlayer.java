@@ -564,7 +564,7 @@ public final class MainVideoPlayer extends AppCompatActivity
         @Override
         public void initViews(final View view) {
             super.initViews(view);
-			this.metadata = view.findViewById(R.id.metadataView);
+            this.metadata = view.findViewById(R.id.metadataView);
             this.titleTextView = view.findViewById(R.id.titleTextView);
             this.channelTextView = view.findViewById(R.id.channelTextView);
             this.volumeRelativeLayout = view.findViewById(R.id.volumeRelativeLayout);

@@ -515,7 +515,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                                            final boolean playbackSkipSilence) {
         if (player != null) {
             player.setPlaybackParameters(playbackTempo, playbackPitch, playbackSkipSilence);
-			onPlaybackParameterChanged(player.getPlaybackParameters());
+            onPlaybackParameterChanged(player.getPlaybackParameters());
         }
     }
 

@@ -23,7 +23,7 @@
         android:label="@string/app_name"
         android:largeHeap="true"
         android:logo="@mipmap/ic_launcher"
-		android:networkSecurityConfig="@xml/network_security_config"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:requestLegacyExternalStorage="true"
         android:theme="@style/OpeningTheme"
         android:resizeableActivity="true"
@@ -164,8 +164,8 @@
                 <data android:pathPrefix="/embed/" />
                 <data android:pathPrefix="/watch" />
                 <data android:pathPrefix="/attribution_link" />
-				<data android:pathPrefix="/shorts/" />
-				<data android:pathPrefix="/live/" />
+                <data android:pathPrefix="/shorts/" />
+                <data android:pathPrefix="/live/" />
                 <!-- channel prefix -->
                 <data android:pathPrefix="/channel/" />
                 <data android:pathPrefix="/user/" />
@@ -249,8 +249,8 @@
                 <data android:host="invidious.kavin.rocks" />
                 <data android:host="invidious-us.kavin.rocks" />
                 <data android:host="piped.kavin.rocks" />
-				<data android:host="invidious.namazso.eu" />
-				<data android:host="tubus.eduvid.org" />
+                <data android:host="invidious.namazso.eu" />
+                <data android:host="tubus.eduvid.org" />
                 <data android:pathPrefix="/" />
             </intent-filter>
 
@@ -309,21 +309,21 @@
                 <data android:scheme="http" />
                 <data android:scheme="https" />
 
-				<data android:host="eduvid.org" />
+                <data android:host="eduvid.org" />
                 <data android:host="framatube.org" />
                 <data android:host="media.assassinate-you.net" />
                 <data android:host="peertube.co.uk" />
                 <data android:host="tilvids.com" />
                 <data android:host="tube.privacytools.io" />
-				<data android:host="media.fsfe.org" />
+                <data android:host="media.fsfe.org" />
 
                 <data android:pathPrefix="/videos/" /> <!-- it contains playlists -->
-				<data android:pathPrefix="/w/" /> <!-- short video URLs -->
-				<data android:pathPrefix="/w/p/" /> <!-- short playlist URLs -->
+                <data android:pathPrefix="/w/" /> <!-- short video URLs -->
+                <data android:pathPrefix="/w/p/" /> <!-- short playlist URLs -->
                 <data android:pathPrefix="/accounts/" />
-				<data android:pathPrefix="/a/" /> <!-- short account URLs -->
+                <data android:pathPrefix="/a/" /> <!-- short account URLs -->
                 <data android:pathPrefix="/video-channels/" />
-				<data android:pathPrefix="/c/" /> <!-- short video-channels URLs -->
+                <data android:pathPrefix="/c/" /> <!-- short video-channels URLs -->
             </intent-filter>
 
             <!-- Bandcamp filter for tracks, albums and playlists -->
