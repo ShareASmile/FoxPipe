@@ -1093,6 +1093,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo>
 
     private void showContent() {
         contentRootLayoutHiding.setVisibility(View.VISIBLE);
+        final boolean showDescriptionOnLoad = PreferenceManager.getDefaultSharedPreferences(activity)
+                .getBoolean(getString(R.string.always_expand_description_key), false);
+        if (showDescriptionOnLoad) {
+            toggleTitleAndDescription();
+        }
     }
 
     protected void setInitialData(final int sid, final String u, final String title) {
