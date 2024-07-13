@@ -432,7 +432,7 @@
     <string name="download_to_sdcard_error_title">ਬਾਹਰੀ ਸਟੋਰੇਜ ਉਪਲਬਧ ਨਹੀਂ ਹੈ</string>
     <string name="download_to_sdcard_error_message">ਬਾਹਰੀ SD ਕਾਰਡ ਤੇ ਡਾਊਨਲੋਡ ਕਰਨਾ ਸੰਭਵ ਨਹੀਂ ਹੈ. ਕੀ ਡਾਊਨਲੋਡ ਫ਼ੋਲਡਰ ਦੀ ਸਥਿਤੀ ਨੂੰ ਰੀਸੈਟ ਕੀਤਾ ਜਾਵੇ \?</string>
     <string name="saved_tabs_invalid_json">ਸਾਂਭੀਆਂ ਟੈਬਾਂ ਨਹੀਂ ਪੜ੍ਹ ਹੋਈਆਂ, ਇਸ ਲਈ ਡਿਫ਼ਾਲਟ ਟੈਬਾਂ ਦੀ ਵਰਤੋਂ ਹੋ ਰਹੀ ਹੈ</string>
-    <string name="restore_defaults">ਡੀਫ਼ਾਲਟ ਮੁੜ-ਸਥਾਪਿਤ ਕਰੋ</string>
+    <string name="restore_defaults">ਡਿਫ਼ਾਲਟ ਮੁੜ-ਸਥਾਪਿਤ ਕਰੋ</string>
     <string name="restore_defaults_confirmation">ਕੀ ਤੁਸੀਂ ਡਿਫ਼ਾਲਟ ਮੁੜ-ਸਥਾਪਤ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ\?</string>
 	<string name="permission_display_over_apps">ਦੂਜੀਆਂ ਐਪਾਂ ਦੇ ਉੱਤੇ ਵਿਖਾਉਣ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ</string>
     <string name="subscribers_count_not_available">ਸਬਸਕ੍ਰਾਇਬਰਾਂ ਦੀ ਗਿਣਤੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ</string>
@@ -513,7 +513,7 @@
     <string name="downloads_storage_ask_summary">ਤੁਹਾਨੂੰ ਹਰ ਵਾਰ ਪੁੱਛਿਆ ਜਾਵੇਗਾ ਕਿ ਡਾਊਨਲੋਡ ਨੂੰ ਕਿੱਥੇ ਸਾਂਭਣਾ ਹੈ</string>
     <string name="downloads_storage_ask_summary_kitkat">ਤੁਹਾਨੂੰ ਪੁੱਛਿਆ ਜਾਵੇਗਾ ਕਿ ਡਾਊਨਲੋਡ ਨੂੰ ਕਿੱਥੇ ਸਾਂਭਣਾ ਹੈ।
 \nਜੇ ਤੁਸੀਂ ਬਾਹਰੀ SD ਕਾਰਡ ਤੇ ਡਾਊਨਲੋਡ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ ਤਾਂ ਇਸ ਨੂੰ ਚਾਲੂ ਕਰੋ</string>
-    <string name="downloads_storage_use_saf_title">SAF ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
+    <string name="downloads_storage_use_saf_title">ਸਿਸਟਮ ਡਾਊਨਲੋਡ ਫ਼ੋਲਡਰ ਚੋਣਕਾਰ SAF ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
     <string name="downloads_storage_use_saf_summary">ਸਟੋਰੇਜ਼ ਐਕਸੈਸ ਫਰੇਮਵਰਕ ਬਾਹਰੀ SD ਕਾਰਡ ਵਿੱਚ ਡਾਊਨਲੋਡ ਕਰਨ ਦੀ ਆਗਿਆ ਦਿੰਦਾ ਹੈ
 \nਨੋਟ: ਕੁਝ ਉਪਕਰਣ ਅਨੁਕੂਲ ਨਹੀਂ ਹਨ</string>
     <string name="content_not_supported">ਇਹ ਸਮੱਗਰੀ ਹਾਲੇ ਨਿਊ-ਪਾਈਪ \'ਤੇ ਕੰਮ ਨਹੀਂ ਕਰਦੀ।
